@@ -1,0 +1,12 @@
+com.example.spk_saw.app-jetified-window-java-1.0.0-beta04-0 /Users/elmaleek03/.gradle/caches/transforms-3/0405998f84be17d5a270058e4d9efafb/transformed/jetified-window-java-1.0.0-beta04/res
+com.example.spk_saw.app-jetified-window-1.0.0-beta04-1 /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/res
+com.example.spk_saw.app-core-1.6.0-2 /Users/elmaleek03/.gradle/caches/transforms-3/b9dacad0f35600dba90dc5abefc740a2/transformed/core-1.6.0/res
+com.example.spk_saw.app-jetified-annotation-experimental-1.1.0-3 /Users/elmaleek03/.gradle/caches/transforms-3/e2cc17ad14f3f9d5816369ddec614b98/transformed/jetified-annotation-experimental-1.1.0/res
+com.example.spk_saw.app-debug-4 /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/res
+com.example.spk_saw.app-main-5 /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/res
+com.example.spk_saw.app-pngs-6 /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/build/app/generated/res/pngs/debug
+com.example.spk_saw.app-resValues-7 /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/build/app/generated/res/resValues/debug
+com.example.spk_saw.app-rs-8 /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/build/app/generated/res/rs/debug
+com.example.spk_saw.app-mergeDebugResources-9 /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/build/app/intermediates/incremental/debug/mergeDebugResources/merged.dir
+com.example.spk_saw.app-mergeDebugResources-10 /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/build/app/intermediates/incremental/debug/mergeDebugResources/stripped.dir
+com.example.spk_saw.app-merged_res-11 /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/build/app/intermediates/merged_res/debug

@@ -1,0 +1,4 @@
+#Mon Mar 25 02:35:22 WIB 2024
+base.0=/Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

@@ -1,0 +1,118 @@
+-- Merging decision tree log ---
+application
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:2:5-32:19
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.core:core:1.6.0] /Users/elmaleek03/.gradle/caches/transforms-3/b9dacad0f35600dba90dc5abefc740a2/transformed/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] /Users/elmaleek03/.gradle/caches/transforms-3/b9dacad0f35600dba90dc5abefc740a2/transformed/core-1.6.0/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/elmaleek03/.gradle/caches/transforms-3/9fc54a3447415e8f72b7d1e3624be329/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/elmaleek03/.gradle/caches/transforms-3/9fc54a3447415e8f72b7d1e3624be329/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.6.0] /Users/elmaleek03/.gradle/caches/transforms-3/b9dacad0f35600dba90dc5abefc740a2/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
+	android:name
+		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
+manifest
+ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+MERGED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+MERGED from [:path_provider_android] /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/0405998f84be17d5a270058e4d9efafb/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/elmaleek03/.gradle/caches/transforms-3/6f5426ce9386703493d65cd993e45dda/transformed/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/07b43f16634e46c390818a455a711286/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/cf2722bb78abd0ee64150ff2d344fe8f/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/916f25afb688e040da0a26fbc07a90be/transformed/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/d8e352355974aa3ebfa4c286924d82a5/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.6.0] /Users/elmaleek03/.gradle/caches/transforms-3/b9dacad0f35600dba90dc5abefc740a2/transformed/core-1.6.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/elmaleek03/.gradle/caches/transforms-3/7bc7a469b666e8bbcab8eafc7fa2e04c/transformed/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/713128c2a8ccc1c70472e342f2759c5d/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/ab57872d619eb14fa6a8a27313f1781f/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/eb1f11bf25c33ac165eebd48d231c6f0/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/0ba9d73451d3c01817fdc8f0f4fb780d/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/fff08935b996fe9fc1b1879dec530ee4/transformed/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/elmaleek03/.gradle/caches/transforms-3/9fc54a3447415e8f72b7d1e3624be329/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/elmaleek03/.gradle/caches/transforms-3/a01bee791c82c518c6a8d9b579c69dca/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/elmaleek03/.gradle/caches/transforms-3/e2cc17ad14f3f9d5816369ddec614b98/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml:1:1-7:12
+	package
+		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
+		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:11-69
+uses-sdk
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
+MERGED from [:path_provider_android] /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:path_provider_android] /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/0405998f84be17d5a270058e4d9efafb/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/0405998f84be17d5a270058e4d9efafb/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/elmaleek03/.gradle/caches/transforms-3/6f5426ce9386703493d65cd993e45dda/transformed/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/elmaleek03/.gradle/caches/transforms-3/6f5426ce9386703493d65cd993e45dda/transformed/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/07b43f16634e46c390818a455a711286/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/07b43f16634e46c390818a455a711286/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/cf2722bb78abd0ee64150ff2d344fe8f/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/cf2722bb78abd0ee64150ff2d344fe8f/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/916f25afb688e040da0a26fbc07a90be/transformed/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/916f25afb688e040da0a26fbc07a90be/transformed/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/d8e352355974aa3ebfa4c286924d82a5/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/d8e352355974aa3ebfa4c286924d82a5/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.6.0] /Users/elmaleek03/.gradle/caches/transforms-3/b9dacad0f35600dba90dc5abefc740a2/transformed/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] /Users/elmaleek03/.gradle/caches/transforms-3/b9dacad0f35600dba90dc5abefc740a2/transformed/core-1.6.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/elmaleek03/.gradle/caches/transforms-3/7bc7a469b666e8bbcab8eafc7fa2e04c/transformed/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /Users/elmaleek03/.gradle/caches/transforms-3/7bc7a469b666e8bbcab8eafc7fa2e04c/transformed/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/713128c2a8ccc1c70472e342f2759c5d/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/713128c2a8ccc1c70472e342f2759c5d/transformed/jetified-savedstate-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/ab57872d619eb14fa6a8a27313f1781f/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/ab57872d619eb14fa6a8a27313f1781f/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/eb1f11bf25c33ac165eebd48d231c6f0/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/eb1f11bf25c33ac165eebd48d231c6f0/transformed/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/0ba9d73451d3c01817fdc8f0f4fb780d/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/0ba9d73451d3c01817fdc8f0f4fb780d/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/fff08935b996fe9fc1b1879dec530ee4/transformed/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/elmaleek03/.gradle/caches/transforms-3/fff08935b996fe9fc1b1879dec530ee4/transformed/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/elmaleek03/.gradle/caches/transforms-3/9fc54a3447415e8f72b7d1e3624be329/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/elmaleek03/.gradle/caches/transforms-3/9fc54a3447415e8f72b7d1e3624be329/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/elmaleek03/.gradle/caches/transforms-3/a01bee791c82c518c6a8d9b579c69dca/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/elmaleek03/.gradle/caches/transforms-3/a01bee791c82c518c6a8d9b579c69dca/transformed/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/elmaleek03/.gradle/caches/transforms-3/e2cc17ad14f3f9d5816369ddec614b98/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/elmaleek03/.gradle/caches/transforms-3/e2cc17ad14f3f9d5816369ddec614b98/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml:6:5-66
+	android:name
+		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml:6:22-64
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
