@@ -88,7 +88,7 @@ class _InputMatrixPageState extends State<InputMatrixPage> {
                       final isSelected = _selectedAlternativeIndex == index;
                       return ActionChip(
                         label: Text(
-                          alternatif,
+                          alternatif.name,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             color: isSelected ? Colors.white : Colors.black87,
@@ -111,7 +111,7 @@ class _InputMatrixPageState extends State<InputMatrixPage> {
                       child: Column(
                         children: [
                           Text(
-                            'Alternative ${provider.alternatifList[_selectedAlternativeIndex]}:',
+                            'Alternative ${provider.alternatifList[_selectedAlternativeIndex].name}:',
                             style:
                                 GoogleFonts.inter(fontWeight: FontWeight.bold),
                           ),

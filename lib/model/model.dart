@@ -28,3 +28,10 @@ class MainMenu {
     required this.pageNavigator,
   });
 }
+
+class Alternative {
+  final String name;
+  int ranking;
+
+  Alternative(this.name, this.ranking);
+}

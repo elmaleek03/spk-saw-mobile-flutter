@@ -96,7 +96,7 @@ class _InputAlternatifPageState extends State<InputAlternatifPage> {
                           style: GoogleFonts.inter(fontSize: 18),
                         ), // Add this line
                         title: Text(
-                          alternatif,
+                          alternatif.name,
                           style: GoogleFonts.inter(),
                         ),
                         trailing: IconButton(
