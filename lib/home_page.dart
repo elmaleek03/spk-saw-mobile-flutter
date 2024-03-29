@@ -13,6 +13,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool firstEmptyFound = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,12 +40,17 @@ class _HomePageState extends State<HomePage> {
                       (mainMenu.title.contains('Alternatif') &&
                           provider.alternatifList.isEmpty) ||
                       (mainMenu.title.contains('Matrix') &&
-                          provider.matrixValues.isEmpty);
+                          provider.matrixValues.isEmpty) ||
+                      (mainMenu.title.contains('Hasil Akhir') &&
+                          provider.sortedAlternatives.isEmpty);
                   final currentList = mainMenu.title.contains('Kriteria')
                       ? provider.criteriaList.length
                       : mainMenu.title.contains('Alternatif')
                           ? provider.alternatifList.length
                           : [];
+                  if (isEmpty && !firstEmptyFound) {
+                    firstEmptyFound = true;
+                  }
                   return Card(
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),

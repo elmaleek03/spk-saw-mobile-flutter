@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.example.spk_saw"
+3    package="com.elameek03.spk.saw"
 4    android:versionCode="1"
 5    android:versionName="1.0.0" >
 6
@@ -22,9 +22,9 @@
 19-->[androidx.core:core:1.6.0] /Users/elmaleek03/.gradle/caches/transforms-3/b9dacad0f35600dba90dc5abefc740a2/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
 20        android:debuggable="true"
 21        android:icon="@mipmap/ic_launcher"
-22        android:label="spk_saw" >
+22        android:label="Penghitung SPK SAW" >
 23        <activity
-24            android:name="com.example.spk_saw.MainActivity"
+24            android:name="com.elameek03.spk.saw.MainActivity"
 25            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
 26            android:exported="true"
 27            android:hardwareAccelerated="true"

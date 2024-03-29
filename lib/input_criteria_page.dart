@@ -17,6 +17,7 @@ class _InputCriteriaPageState extends State<InputCriteriaPage> {
   TextEditingController symbolController = TextEditingController();
   TextEditingController criteriaController = TextEditingController();
   TextEditingController weightController = TextEditingController();
+  String dropdownValue = 'Benefit';
 
   @override
   Widget build(BuildContext context) {
@@ -98,17 +99,48 @@ class _InputCriteriaPageState extends State<InputCriteriaPage> {
                     keyboardType: TextInputType.number,
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.allow(
-                        RegExp(r'^(0(\.\d{0,1})?|1(\.0)?)$'),
+                        RegExp(r'^\d*\.?\d{0,2}$'),
                       )
                     ],
                     decoration: InputDecoration(
-                      contentPadding:
-                          const EdgeInsets.all(14.0), // Add this line
+                      contentPadding: const EdgeInsets.all(14.0),
                       labelStyle: GoogleFonts.inter(
                           fontSize: 14, fontWeight: FontWeight.w500),
                       labelText: 'Weight Value',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        value: dropdownValue,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownValue = newValue!;
+                          });
+                        },
+                        items: <String>['Benefit', 'Cost']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: GoogleFonts.inter(
+                                  fontSize: 14, fontWeight: FontWeight.w600),
+                            ),
+                          );
+                        }).toList(),
                       ),
                     ),
                   ),
@@ -135,7 +167,7 @@ class _InputCriteriaPageState extends State<InputCriteriaPage> {
                           style: GoogleFonts.inter(fontSize: 18),
                         ), // Add this line
                         title: Text(
-                          '${criteria.symbol} - ${criteria.criteria}',
+                          '${criteria.symbol} - ${criteria.criteria} (${criteria.attribute})',
                           style: GoogleFonts.inter(),
                         ),
                         subtitle: Text(
@@ -164,15 +196,16 @@ class _InputCriteriaPageState extends State<InputCriteriaPage> {
     final symbol = symbolController.text;
     final criteria = criteriaController.text;
     final weightValue = double.tryParse(weightController.text) ?? 0;
+    final attribute = dropdownValue;
 
     if (symbol.isNotEmpty && criteria.isNotEmpty && weightValue > 0) {
       final provider = Provider.of<SawProvider>(context, listen: false);
       provider.addCriteria(
         Criteria(
-          symbol: symbol,
-          criteria: criteria,
-          weightValue: weightValue,
-        ),
+            symbol: symbol,
+            criteria: criteria,
+            weightValue: weightValue,
+            attribute: attribute),
       );
       setState(() {
         symbolController.clear();

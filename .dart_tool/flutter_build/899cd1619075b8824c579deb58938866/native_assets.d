@@ -1,0 +1,1 @@
+ /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/.dart_tool/flutter_build/899cd1619075b8824c579deb58938866/native_assets.yaml: 

@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 application
-INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:2:5-32:19
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:2:5-17:19
 MERGED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.core:core:1.6.0] /Users/elmaleek03/.gradle/caches/transforms-3/b9dacad0f35600dba90dc5abefc740a2/transformed/core-1.6.0/AndroidManifest.xml:24:5-89
@@ -12,11 +12,11 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/elma
 	android:name
 		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
 manifest
-ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
-INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
-INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
-INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
-MERGED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-18:12
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-18:12
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-18:12
+INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-18:12
+MERGED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-18:12
 MERGED from [:path_provider_android] /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/build/path_provider_android/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/0405998f84be17d5a270058e4d9efafb/transformed/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] /Users/elmaleek03/.gradle/caches/transforms-3/a0569c84da92e780ec0301345a5680b8/transformed/jetified-window-1.0.0-beta04/AndroidManifest.xml:17:1-33:12
@@ -40,15 +40,15 @@ INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/
 INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml:1:1-7:12
 	package
 		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-18:12
 		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-18:12
 		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-33:12
+		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:1-18:12
 		INJECTED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/AndroidManifest.xml:1:11-69

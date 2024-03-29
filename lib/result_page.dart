@@ -12,227 +12,381 @@ class ResultPage extends StatefulWidget {
 class _ResultPageState extends State<ResultPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Hasil',
-          style: CustomStyles.appBarTextStyle(),
+    return Consumer<SawProvider>(builder: (context, provider, _) {
+      bool areListsEmpty = provider.criteriaList.isEmpty ||
+          provider.alternatifList.isEmpty ||
+          provider.matrixValues.isEmpty;
+
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Hasil',
+            style: CustomStyles.appBarTextStyle(),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: Consumer<SawProvider>(
-        builder: (context, provider, _) {
-          debugPrint(provider.calculatedWeights.toString());
-          return SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Text(
-                    'Tabel Alternatif',
-                    style: GoogleFonts.inter(
-                        fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
+        body: areListsEmpty
+            ? Center(
+                child: Text(
+                  'Data belum lengkap!',
+                  style: GoogleFonts.inter(),
                 ),
-                // Table to display matrix values for every alternative
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Table(
-                      border: TableBorder.all(
-                          color: Colors.black12,
-                          borderRadius: BorderRadius.circular(8)),
-                      columnWidths: {
-                        0: const FixedColumnWidth(
-                            150), // Adjust width of the first column as needed
-                        ...{
-                          for (int index = 0;
-                              index < provider.criteriaList.length;
-                              index++)
-                            index + 1: FixedColumnWidth(
-                                100), // Adjust width of other columns as needed
-                        },
-                      },
-                      children: [
-                        TableRow(
+              )
+            : SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Text(
+                        'Matriks Keputusan',
+                        style: GoogleFonts.inter(
+                            fontSize: 18, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    // Table to display matrix values for every alternative
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Table(
+                          border: TableBorder.all(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(8)),
+                          columnWidths: {
+                            0: const FixedColumnWidth(
+                                150), // Adjust width of the first column as needed
+                            ...{
+                              for (int index = 0;
+                                  index < provider.criteriaList.length;
+                                  index++)
+                                index + 1: FixedColumnWidth(
+                                    100), // Adjust width of other columns as needed
+                            },
+                          },
                           children: [
-                            TableCell(
-                              child: Container(
-                                padding: EdgeInsets.all(8.0),
-                                color: Colors.brown[300],
-                                alignment: Alignment.center,
-                                child: Text(
-                                  'Alternatif',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                            ...List.generate(
-                              provider.criteriaList.length,
-                              (index) => TableCell(
-                                child: Container(
-                                  padding: EdgeInsets.all(8.0),
-                                  color: Colors.brown[300],
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    'C${index + 1}',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        ...List.generate(
-                          provider.matrixValues.length,
-                          (altIndex) {
-                            return TableRow(
+                            TableRow(
                               children: [
                                 TableCell(
                                   child: Container(
                                     padding: EdgeInsets.all(8.0),
-                                    decoration: BoxDecoration(
-                                      color: altIndex % 2 == 0
-                                          ? Colors.grey.shade200
-                                          : Colors.white,
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
+                                    color: Colors.brown[300],
                                     alignment: Alignment.center,
                                     child: Text(
-                                      'A${altIndex + 1} ${provider.alternatifList[altIndex].name}',
+                                      'Alternatif',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 ),
                                 ...List.generate(
-                                  provider.matrixValues[altIndex].length,
-                                  (critIndex) => TableCell(
+                                  provider.criteriaList.length,
+                                  (index) => TableCell(
                                     child: Container(
                                       padding: EdgeInsets.all(8.0),
-                                      decoration: BoxDecoration(
-                                        color: altIndex % 2 == 0
-                                            ? Colors.grey.shade200
-                                            : Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
+                                      color: Colors.brown[300],
                                       alignment: Alignment.center,
                                       child: Text(
-                                        provider.matrixValues[altIndex]
-                                                [critIndex]
-                                            .toString(),
+                                        'C${index + 1}',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                   ),
                                 ),
                               ],
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      provider.calculateSAW(provider);
-                    },
-                    child: Text(
-                      'Hitung Hasil SAW',
-                      style: GoogleFonts.inter(fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                provider.hasCalculated
-                    ? Column(
-                        children: [
-                          Center(
-                            child: Text(
-                              'Tabel Normalisasi',
-                              style: GoogleFonts.inter(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
                             ),
-                          ),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Table(
-                                border: TableBorder.all(
-                                    color: Colors.black12,
-                                    borderRadius: BorderRadius.circular(8)),
-                                columnWidths: {
-                                  0: FixedColumnWidth(
-                                      150), // Adjust width of the first column as needed
-                                  ...{
-                                    for (int index = 0;
-                                        index < provider.criteriaList.length;
-                                        index++)
-                                      index + 1: FixedColumnWidth(
-                                          100), // Adjust width of other columns as needed
-                                  },
-                                },
-                                children: [
-                                  TableRow(
-                                    children: [
-                                      TableCell(
+                            ...List.generate(
+                              provider.matrixValues.length,
+                              (altIndex) {
+                                return TableRow(
+                                  children: [
+                                    TableCell(
+                                      child: Container(
+                                        padding: EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                          color: altIndex % 2 == 0
+                                              ? Colors.grey.shade200
+                                              : Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          'A${altIndex + 1} ${provider.alternatifList[altIndex].name}',
+                                        ),
+                                      ),
+                                    ),
+                                    ...List.generate(
+                                      provider.matrixValues[altIndex].length,
+                                      (critIndex) => TableCell(
                                         child: Container(
                                           padding: EdgeInsets.all(8.0),
-                                          color: Colors.brown[300],
+                                          decoration: BoxDecoration(
+                                            color: altIndex % 2 == 0
+                                                ? Colors.grey.shade200
+                                                : Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
                                           alignment: Alignment.center,
                                           child: Text(
-                                            'Alternatif',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
+                                            provider.matrixValues[altIndex]
+                                                    [critIndex]
+                                                .toString(),
                                           ),
                                         ),
                                       ),
-                                      ...List.generate(
-                                        provider.criteriaList.length,
-                                        (index) => TableCell(
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            provider.calculateSAW(provider);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Hitung Hasil SAW',
+                                style: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 0),
+                    provider.hasCalculated
+                        ? Column(
+                            children: [
+                              const Divider(),
+                              const SizedBox(height: 10),
+                              Center(
+                                child: Text(
+                                  'Matriks Ternormalisasi (R)',
+                                  style: GoogleFonts.inter(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Table(
+                                      border: TableBorder.all(
+                                        color: Colors.black12,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      columnWidths: {
+                                        0: const FixedColumnWidth(
+                                            150), // Adjust width of the first column as needed
+                                        ...{
+                                          for (int index = 0;
+                                              index <
+                                                  provider.criteriaList.length;
+                                              index++)
+                                            index + 1: FixedColumnWidth(
+                                                100), // Adjust width of other columns as needed
+                                        },
+                                      },
+                                      children: [
+                                        // Header row
+                                        TableRow(
+                                          children: [
+                                            TableCell(
+                                              child: Container(
+                                                padding: EdgeInsets.all(8.0),
+                                                color: Colors.brown[300],
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  'Alternatives',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                            ),
+                                            // Generate header cells for criteria
+                                            ...List.generate(
+                                              provider.criteriaList.length,
+                                              (index) => TableCell(
+                                                child: Container(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  color: Colors.brown[300],
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    'C${index + 1}',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        // Data columns
+                                        ...List.generate(
+                                          provider.normalizedMatrix[0].length,
+                                          (critIndex) {
+                                            return TableRow(
+                                              children: [
+                                                // Generate cell for alternative name
+                                                TableCell(
+                                                  child: Container(
+                                                    padding:
+                                                        EdgeInsets.all(8.0),
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade200,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                      provider
+                                                          .alternatifList[
+                                                              critIndex]
+                                                          .name,
+                                                    ),
+                                                  ),
+                                                ),
+                                                // Generate cells for normalized values for the current alternative
+                                                ...List.generate(
+                                                  provider
+                                                      .normalizedMatrix.length,
+                                                  (altIndex) => TableCell(
+                                                    child: Container(
+                                                      padding:
+                                                          EdgeInsets.all(8.0),
+                                                      decoration: BoxDecoration(
+                                                        color: altIndex % 2 == 0
+                                                            ? Colors
+                                                                .grey.shade200
+                                                            : Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        provider
+                                                            .normalizedMatrix[
+                                                                altIndex]
+                                                                [critIndex]
+                                                            .toStringAsFixed(2),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    )),
+                              ),
+                              // Calculated Weight Table
+                              Center(
+                                child: Text(
+                                  'Matriks Nilai Preferensi (P)',
+                                  style: GoogleFonts.inter(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Table(
+                                  border: TableBorder.all(
+                                    color: Colors.black12,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  columnWidths: {
+                                    0: const FixedColumnWidth(
+                                        150), // Adjust width of the first column as needed
+                                    ...{
+                                      for (int index = 0;
+                                          index < provider.criteriaList.length;
+                                          index++)
+                                        index + 1: FixedColumnWidth(
+                                            100), // Adjust width of other columns as needed
+                                    },
+                                  },
+                                  children: [
+                                    // Header row
+                                    TableRow(
+                                      children: [
+                                        TableCell(
                                           child: Container(
                                             padding: EdgeInsets.all(8.0),
                                             color: Colors.brown[300],
                                             alignment: Alignment.center,
                                             child: Text(
-                                              'C${index + 1}',
+                                              'Alternatives',
                                               style: TextStyle(
-                                                  fontWeight: FontWeight.bold),
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  ...List.generate(
-                                    provider.normalizedMatrix.length,
-                                    (altIndex) {
-                                      return TableRow(
-                                        children: [
-                                          TableCell(
-                                            child: Container(
-                                              padding: EdgeInsets.all(8.0),
-                                              decoration: BoxDecoration(
-                                                color: altIndex % 2 == 0
-                                                    ? Colors.grey.shade200
-                                                    : Colors.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                'A${altIndex + 1}',
+                                        // Header cell for weighted sums
+                                        TableCell(
+                                          child: Container(
+                                            padding: EdgeInsets.all(8.0),
+                                            color: Colors.brown[300],
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              'Hasil',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           ),
-                                          ...List.generate(
-                                            provider.normalizedMatrix[altIndex]
-                                                .length,
-                                            (critIndex) => TableCell(
+                                        ),
+                                      ],
+                                    ),
+                                    // Data rows
+                                    ...List.generate(
+                                      provider.alternatifList.length,
+                                      (altIndex) {
+                                        return TableRow(
+                                          children: [
+                                            // Generate cell for alternative name
+                                            TableCell(
+                                              child: Container(
+                                                padding: EdgeInsets.all(8.0),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey.shade200,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  provider
+                                                      .alternatifList[altIndex]
+                                                      .name,
+                                                ),
+                                              ),
+                                            ),
+                                            // Generate cell for weighted sum for the current alternative
+                                            TableCell(
                                               child: Container(
                                                 padding: EdgeInsets.all(8.0),
                                                 decoration: BoxDecoration(
@@ -245,213 +399,168 @@ class _ResultPageState extends State<ResultPage> {
                                                 ),
                                                 alignment: Alignment.center,
                                                 child: Text(
-                                                  provider.normalizedMatrix[
-                                                          altIndex][critIndex]
-                                                      .toStringAsFixed(2),
+                                                  altIndex <
+                                                          provider
+                                                              .calculatedWeightSums
+                                                              .length
+                                                      ? provider
+                                                          .calculatedWeightSums[
+                                                              altIndex]
+                                                          .toStringAsFixed(2)
+                                                      : '', // Check if altIndex is within the range of calculatedWeightSums
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          // Calculated Weight Table
-                          Table(
-                            border: TableBorder.all(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(8)),
-                            columnWidths: {
-                              0: const FixedColumnWidth(
-                                  150), // Adjust width of the first column as needed
-                              ...{
-                                for (int index = 0;
-                                    index < provider.criteriaList.length;
-                                    index++)
-                                  index + 1: FixedColumnWidth(
-                                      100), // Adjust width of other columns as needed
-                              },
-                            },
-                            children: [
-                              TableRow(
-                                children: [
-                                  TableCell(
-                                    child: Container(
-                                      padding: EdgeInsets.all(8.0),
-                                      color: Colors.brown[300],
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        'Alternatif',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                                          ],
+                                        );
+                                      },
                                     ),
-                                  ),
-                                  ...List.generate(
-                                    provider.criteriaList.length,
-                                    (index) => TableCell(
-                                      child: Container(
-                                        padding: EdgeInsets.all(8.0),
-                                        color: Colors.brown[300],
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          'Weight for C${index + 1}',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                              ...List.generate(
-                                provider.normalizedMatrix.length,
-                                (altIndex) {
-                                  return TableRow(
-                                    children: [
-                                      TableCell(
-                                        child: Container(
-                                          padding: EdgeInsets.all(8.0),
-                                          decoration: BoxDecoration(
-                                            color: altIndex % 2 == 0
-                                                ? Colors.grey.shade200
-                                                : Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            'A${altIndex + 1}',
-                                          ),
-                                        ),
-                                      ),
-                                      ...List.generate(
-                                        provider
-                                            .normalizedMatrix[altIndex].length,
-                                        (critIndex) => TableCell(
-                                          child: Container(
-                                            padding: EdgeInsets.all(8.0),
-                                            decoration: BoxDecoration(
-                                              color: altIndex % 2 == 0
-                                                  ? Colors.grey.shade200
-                                                  : Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              provider
-                                                  .calculatedWeights[altIndex]
-                                                      [critIndex]
-                                                  .toStringAsFixed(
-                                                      2), // Use altIndex and critIndex to access the weight
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                },
+                              Center(
+                                child: Text(
+                                  'Hasil Pengurutan',
+                                  style: GoogleFonts.inter(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
                               ),
-                            ],
-                          ),
 
 // Rank Table
-                          Table(
-                            border: TableBorder.all(
-                                color: Colors.black12,
-                                borderRadius: BorderRadius.circular(8)),
-                            columnWidths: {
-                              0: const FixedColumnWidth(
-                                  150), // Adjust width of the first column as needed
-                              1: const FixedColumnWidth(
-                                  100), // Adjust width of the second column as needed
-                            },
-                            children: [
-                              TableRow(
-                                children: [
-                                  TableCell(
-                                    child: Container(
-                                      padding: EdgeInsets.all(8.0),
-                                      color: Colors.brown[300],
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        'Alternatif',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Table(
+                                  border: TableBorder.all(
+                                    color: Colors.black12,
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
-                                  TableCell(
-                                    child: Container(
-                                      padding: EdgeInsets.all(8.0),
-                                      color: Colors.brown[300],
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        'Rank',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              ...List.generate(
-                                provider.alternatifList.length,
-                                (altIndex) {
-                                  return TableRow(
-                                    children: [
-                                      TableCell(
-                                        child: Container(
-                                          padding: EdgeInsets.all(8.0),
-                                          decoration: BoxDecoration(
-                                            color: altIndex % 2 == 0
-                                                ? Colors.grey.shade200
-                                                : Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            'A${altIndex + 1} ${provider.alternatifList[altIndex].name}',
+                                  columnWidths: {
+                                    0: const FixedColumnWidth(
+                                        50), // Width for the "No" column
+                                    1: const FixedColumnWidth(
+                                        150), // Width for the "Alternatives" column
+                                    2: const FixedColumnWidth(
+                                        100), // Width for the "Nilai Akhir" column
+                                  },
+                                  children: [
+                                    // Header row
+                                    TableRow(
+                                      children: [
+                                        TableCell(
+                                          child: Container(
+                                            padding: EdgeInsets.all(8.0),
+                                            color: Colors.brown[300],
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              'No',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      TableCell(
-                                        child: Container(
-                                          padding: EdgeInsets.all(8.0),
-                                          decoration: BoxDecoration(
-                                            color: altIndex % 2 == 0
-                                                ? Colors.grey.shade200
-                                                : Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            provider.rankings[altIndex]
-                                                .toString(),
+                                        TableCell(
+                                          child: Container(
+                                            padding: EdgeInsets.all(8.0),
+                                            color: Colors.brown[300],
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              'Alternatives',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  );
-                                },
+                                        TableCell(
+                                          child: Container(
+                                            padding: EdgeInsets.all(8.0),
+                                            color: Colors.brown[300],
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              'Nilai Akhir',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    // Data rows
+                                    ...List.generate(
+                                      provider.sortedAlternatives.length,
+                                      (index) {
+                                        return TableRow(
+                                          children: [
+                                            TableCell(
+                                              child: Container(
+                                                padding: EdgeInsets.all(8.0),
+                                                decoration: BoxDecoration(
+                                                  color: index % 2 == 0
+                                                      ? Colors.grey.shade200
+                                                      : Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  (index + 1)
+                                                      .toString(), // Display the index as the "No"
+                                                ),
+                                              ),
+                                            ),
+                                            TableCell(
+                                              child: Container(
+                                                padding: EdgeInsets.all(8.0),
+                                                decoration: BoxDecoration(
+                                                  color: index % 2 == 0
+                                                      ? Colors.grey.shade200
+                                                      : Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  'A${index + 1} ${provider.sortedAlternatives[index].name}', // Display the alternative name
+                                                ),
+                                              ),
+                                            ),
+                                            TableCell(
+                                              child: Container(
+                                                padding: EdgeInsets.all(8.0),
+                                                decoration: BoxDecoration(
+                                                  color: index % 2 == 0
+                                                      ? Colors.grey.shade200
+                                                      : Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  provider
+                                                      .sortedAlternatives[index]
+                                                      .finalSumValue
+                                                      .toStringAsFixed(
+                                                          2), // Display the final sum value
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
-                          ),
-                        ],
-                      )
-                    : const SizedBox()
-              ],
-            ),
-          );
-        },
-      ),
-    );
+                          )
+                        : const SizedBox()
+                  ],
+                ),
+              ),
+      );
+    });
   }
 }

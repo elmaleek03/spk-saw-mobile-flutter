@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.spk_saw.app-mergeDebugResources-9:/values/values.xml",
+            "outputFile": "com.elameek03.spk.saw.app-mergeDebugResources-9:/values/values.xml",
             "map": [
                 {
                     "source": "/Users/elmaleek03/Documents/GitHub/spk_saw_mobile_flutter/android/app/src/main/res/values/styles.xml",

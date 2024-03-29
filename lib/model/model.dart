@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 class Criteria {
   final String symbol;
   final String criteria;
+  final String attribute;
   final double weightValue;
+
+  bool get isBenefit => attribute.toLowerCase() == "benefit";
 
   Criteria(
       {required this.symbol,
       required this.criteria,
+      required this.attribute,
       required this.weightValue});
 }
 
@@ -31,7 +35,7 @@ class MainMenu {
 
 class Alternative {
   final String name;
-  int ranking;
+  double finalSumValue;
 
-  Alternative(this.name, this.ranking);
+  Alternative(this.name, this.finalSumValue);
 }

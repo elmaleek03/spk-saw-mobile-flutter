@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:spk_saw/model/model.dart';
 import 'package:decimal/decimal.dart';
+import 'dart:math' as math;
 
 class SawProvider extends ChangeNotifier {
   List<Criteria> _criteriaList = [];
+
   List<Alternative> _alternatifList = [];
+
   List<List<double>> _matrixValues = [];
+
   List<List<double>> _normalizedMatrix = [];
-  List<List<Decimal>> _calculatedWeights = [];
-  List<int> _rankings = [];
+  List<Decimal> _calculatedWeightedSums = [];
+  List<Alternative> _sortedAlternatives = [];
   bool _hasCalculated = false;
 
   List<Criteria> get criteriaList => _criteriaList;
   List<Alternative> get alternatifList => _alternatifList;
   List<List<double>> get matrixValues => _matrixValues;
   List<List<double>> get normalizedMatrix => _normalizedMatrix;
-  List<List<Decimal>> get calculatedWeights => _calculatedWeights;
-  List<int> get rankings => _rankings;
+  List<Decimal> get calculatedWeightSums => _calculatedWeightedSums;
+  List<Alternative> get sortedAlternatives => _sortedAlternatives;
   bool get hasCalculated => _hasCalculated;
 
   void addCriteria(Criteria criteria) {
@@ -63,93 +67,118 @@ class SawProvider extends ChangeNotifier {
 
   void calculateSAW(SawProvider provider) {
     // Normalize the matrix values
-    _normalizedMatrix = _normalizeMatrix(provider.matrixValues);
+    _normalizedMatrix =
+        _normalizeMatrix(provider.matrixValues, provider.criteriaList);
 
     // Calculate the weighted sum for each alternative
-    _calculatedWeights =
-        _calculateWeightedSums(_normalizedMatrix, provider.criteriaList);
+    _calculatedWeightedSums =
+        _calculateWeightedSums((_normalizedMatrix), provider.criteriaList);
 
     // Rank the alternatives
-    _rankings = _rankAlternatives(_calculatedWeights);
+    _sortedAlternatives = _rankAlternatives();
 
     // Update provider with rankings
-    provider.updateRankings(_rankings);
+    // provider.updateRankings(_rankings);
     _hasCalculated = true;
     notifyListeners();
   }
 
-  // Normalize the matrix values
-  List<List<double>> _normalizeMatrix(List<List<double>> matrix) {
+  List<List<double>> _normalizeMatrix(
+    List<List<double>> matrix,
+    List<Criteria> criteriaList,
+  ) {
     List<List<double>> normalizedMatrix = [];
-    for (int col = 0; col < matrix[0].length; col++) {
-      double sum = 0;
-      for (int row = 0; row < matrix.length; row++) {
-        sum += matrix[row][col];
+
+    for (int row = 0; row < matrix.length; row++) {
+      List<double> rowValues = [];
+
+      for (int col = 0; col < matrix[row].length; col++) {
+        double value = matrix[row][col];
+        double normalizedValue;
+
+        if (criteriaList[col].attribute == "Cost") {
+          // Cost criteria: Rij = ( min{Xij} / Xij )
+          double minValue = matrix.map((e) => e[col]).reduce(math.min);
+          normalizedValue = minValue / value;
+        } else {
+          // Benefit criteria: Rij = ( Xij / max{Xij} )
+          double maxValue = matrix.map((e) => e[col]).reduce(math.max);
+          normalizedValue = value / maxValue;
+        }
+
+        rowValues.add(normalizedValue);
       }
-      List<double> normalizedColumn = [];
-      for (int row = 0; row < matrix.length; row++) {
-        double normalizedValue =
-            double.parse((matrix[row][col] / sum).toStringAsFixed(2));
-        normalizedColumn.add(normalizedValue);
-      }
-      normalizedMatrix.add(normalizedColumn);
+
+      normalizedMatrix.add(rowValues);
     }
-    return normalizedMatrix;
+    debugPrint('Normalized Matrix: ${transpose(normalizedMatrix)}');
+    return transpose(normalizedMatrix);
+  }
+
+  // Function to transpose a matrix
+  List<List<T>> transpose<T>(List<List<T>> matrix) {
+    return List.generate(
+      matrix[0].length,
+      (col) => List.generate(
+        matrix.length,
+        (row) => matrix[row][col],
+      ),
+    );
   }
 
   // Calculate the weighted sum for each alternative
-  List<List<Decimal>> _calculateWeightedSums(
-      List<List<double>> normalizedMatrix, List<Criteria> criteriaList) {
-    List<List<Decimal>> weightedSums = [];
-    for (int altIndex = 0; altIndex < normalizedMatrix.length; altIndex++) {
-      List<Decimal> altWeights = List.filled(criteriaList.length,
-          Decimal.zero); // Initialize list for alternative weights
+  List<Decimal> _calculateWeightedSums(
+    List<List<double>> normalizedMatrix,
+    List<Criteria> criteriaList,
+  ) {
+    List<Decimal> weightedSums = [];
+
+    // Multiply each value in the normalized matrix by the corresponding weight value
+    debugPrint('Normalized Matrix: $normalizedMatrix');
+    debugPrint('Length of Normalized Matrix: ${normalizedMatrix.length}');
+    debugPrint('Length of Criteria List: ${criteriaList.length}');
+
+    List<List<double>> weightedMatrix = List.generate(
+      criteriaList.length, // Number of criteria
+      (critIndex) => List.generate(
+        normalizedMatrix[0].length, // Number of alternatives
+        (altIndex) =>
+            normalizedMatrix[critIndex][altIndex] *
+            criteriaList[critIndex].weightValue,
+      ),
+    );
+
+    // Transpose the matrix
+    List<List<double>> transposedWeightedMatrix = transpose(weightedMatrix);
+
+    // Sum the values in each list to get the weighted sum for each alternative
+    for (int altIndex = 0;
+        altIndex < transposedWeightedMatrix.length;
+        altIndex++) {
+      Decimal sum = Decimal.zero;
       for (int critIndex = 0;
-          critIndex < normalizedMatrix[0].length;
+          critIndex < transposedWeightedMatrix[altIndex].length;
           critIndex++) {
-        altWeights[critIndex] =
-            Decimal.parse(normalizedMatrix[altIndex][critIndex].toString()) *
-                Decimal.parse(criteriaList[critIndex].weightValue.toString());
+        sum += Decimal.parse(
+            transposedWeightedMatrix[altIndex][critIndex].toString());
       }
-      weightedSums.add(altWeights);
+      weightedSums.add(sum);
+      alternatifList[altIndex].finalSumValue = sum.toDouble();
     }
+    debugPrint('Weighted Sums: $weightedSums');
     return weightedSums;
   }
 
-  // Rank the alternatives
-  List<int> _rankAlternatives(List<List<Decimal>> weightedSums) {
-    List<int> rankings =
-        List.generate(weightedSums.length, (index) => index + 1);
-    rankings.sort((a, b) {
-      Decimal sumA = Decimal.zero;
-      Decimal sumB = Decimal.zero;
+  List<Alternative> _rankAlternatives() {
+    // Create a copy of the original list to avoid modifying it directly
+    List<Alternative> sortedAlternatifList = List.from(alternatifList);
 
-      // Calculate the sum of weighted sums for alternative A
-      for (int i = 0; i < weightedSums[a - 1].length; i++) {
-        sumA += weightedSums[a - 1][i];
-      }
+    // Sort alternatives based on their finalSumValue
+    sortedAlternatifList
+        .sort((a, b) => b.finalSumValue.compareTo(a.finalSumValue));
 
-      // Calculate the sum of weighted sums for alternative B
-      for (int i = 0; i < weightedSums[b - 1].length; i++) {
-        sumB += weightedSums[b - 1][i];
-      }
-
-      // Compare the sums
-      return sumB.compareTo(sumA);
-    });
-    return rankings;
-  }
-
-  void updateRankings(List<int> rankings) {
-    // Update the rankings in your provider class
-    // For example, you might have a list of alternatives with their rankings
-    // You can update this list with the provided rankings
-    // This is just a placeholder implementation, you need to adapt it to your specific use case
-    for (int i = 0; i < alternatifList.length; i++) {
-      alternatifList[i].ranking = rankings[i];
-    }
-
-    // Notify listeners that the rankings have been updated
-    notifyListeners();
+    // _sortedAlternatives = sortedAlternatifList;
+    // notifyListeners();
+    return sortedAlternatifList;
   }
 }

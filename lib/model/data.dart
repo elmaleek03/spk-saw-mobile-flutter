@@ -36,7 +36,7 @@ List<MainMenu> mainMenuList = [
     title: '4. Normalisasi dan Hasil Akhir',
     desc:
         'Langkah selanjutnya ialah mengkalkulasikan matrix dari lorem ipsum color si jamet',
-    subDesc: 'Input matriks terlebih dahulu!',
+    subDesc: 'Input seluruh data terlebih dahulu!',
     offTitle: 'Kalkulasi data >',
     onTitle: 'Kalkulasi data >',
     pageNavigator: ResultPage(),
