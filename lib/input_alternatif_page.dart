@@ -77,6 +77,7 @@ class _InputAlternatifPageState extends State<InputAlternatifPage> {
                   ElevatedButton(
                     onPressed: () {
                       addAlternatif();
+                      provider.saveAlternatives(provider.alternatifList);
                     },
                     child: Text(
                       'Tambah Alternatif',

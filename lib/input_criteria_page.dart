@@ -148,6 +148,7 @@ class _InputCriteriaPageState extends State<InputCriteriaPage> {
                   ElevatedButton(
                     onPressed: () {
                       addCriteria();
+                      provider.saveCriteria(provider.criteriaList);
                     },
                     child: Text(
                       'Tambah Kriteria',

@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spk_saw/model/model.dart';
 import 'package:decimal/decimal.dart';
 import 'dart:math' as math;
 
 class SawProvider extends ChangeNotifier {
+  String _judulSubjek = '';
+
   List<Criteria> _criteriaList = [];
 
   List<Alternative> _alternatifList = [];
@@ -15,6 +20,7 @@ class SawProvider extends ChangeNotifier {
   List<Alternative> _sortedAlternatives = [];
   bool _hasCalculated = false;
 
+  String get judulSubjek => _judulSubjek;
   List<Criteria> get criteriaList => _criteriaList;
   List<Alternative> get alternatifList => _alternatifList;
   List<List<double>> get matrixValues => _matrixValues;
@@ -22,6 +28,22 @@ class SawProvider extends ChangeNotifier {
   List<Decimal> get calculatedWeightSums => _calculatedWeightedSums;
   List<Alternative> get sortedAlternatives => _sortedAlternatives;
   bool get hasCalculated => _hasCalculated;
+
+  Future<void> loadData() async {
+    _judulSubjek = await loadJudulSubjek();
+    _criteriaList = await loadCriteria();
+    _alternatifList = await loadAlternatives();
+    _matrixValues = await loadMatrixValues();
+    _normalizedMatrix = await loadNormalizedMatrix();
+    _calculatedWeightedSums = await loadCalculatedWeightedSums();
+    _sortedAlternatives = await loadSortedAlternatives();
+    notifyListeners();
+  }
+
+  void addJudulSubjek(String judul) {
+    _judulSubjek = judul;
+    notifyListeners();
+  }
 
   void addCriteria(Criteria criteria) {
     _criteriaList.add(criteria);
@@ -180,5 +202,160 @@ class SawProvider extends ChangeNotifier {
     // _sortedAlternatives = sortedAlternatifList;
     // notifyListeners();
     return sortedAlternatifList;
+  }
+
+  Future<void> saveCriteria(List<Criteria> criteriaList) async {
+    final prefs = await SharedPreferences.getInstance();
+    final criteriaListString =
+        jsonEncode(criteriaList.map((c) => c.toJson()).toList());
+    await prefs.setString('criteriaList', criteriaListString);
+  }
+
+  Future<List<Criteria>> loadCriteria() async {
+    final prefs = await SharedPreferences.getInstance();
+    final criteriaListString = prefs.getString('criteriaList');
+    if (criteriaListString != null) {
+      final criteriaList = (jsonDecode(criteriaListString) as List)
+          .map((item) => Criteria.fromJson(item))
+          .toList();
+      return criteriaList;
+    } else {
+      return [];
+    }
+  }
+
+  Future<void> saveAlternatives(List<Alternative> alternativeList) async {
+    final prefs = await SharedPreferences.getInstance();
+    final alternativeListString =
+        jsonEncode(alternativeList.map((a) => a.toJson()).toList());
+    await prefs.setString('alternativeList', alternativeListString);
+  }
+
+  Future<List<Alternative>> loadAlternatives() async {
+    final prefs = await SharedPreferences.getInstance();
+    final alternativeListString = prefs.getString('alternativeList');
+    if (alternativeListString != null) {
+      final alternativeList = (jsonDecode(alternativeListString) as List)
+          .map((item) => Alternative.fromJson(item))
+          .toList();
+      return alternativeList;
+    } else {
+      return [];
+    }
+  }
+
+  Future<void> saveMatrixValues() async {
+    final prefs = await SharedPreferences.getInstance();
+    final matrixValuesString = jsonEncode(matrixValues);
+    await prefs.setString('matrixValues', matrixValuesString);
+  }
+
+  Future<List<List<double>>> loadMatrixValues() async {
+    final prefs = await SharedPreferences.getInstance();
+    final matrixValuesString = prefs.getString('matrixValues');
+    if (matrixValuesString != null) {
+      final matrixValues = (jsonDecode(matrixValuesString) as List)
+          .map((item) =>
+              (item as List<dynamic>).map((i) => i as double).toList())
+          .toList();
+      return matrixValues;
+    } else {
+      return [];
+    }
+  }
+
+// Save methods
+  Future<void> saveNormalizedMatrix() async {
+    final prefs = await SharedPreferences.getInstance();
+    final normalizedMatrixString = jsonEncode(_normalizedMatrix);
+    await prefs.setString('normalizedMatrix', normalizedMatrixString);
+  }
+
+  Future<void> saveCalculatedWeightedSums() async {
+    final prefs = await SharedPreferences.getInstance();
+    final calculatedWeightedSumsString = jsonEncode(
+        _calculatedWeightedSums.map((item) => item.toString()).toList());
+    await prefs.setString(
+        'calculatedWeightedSums', calculatedWeightedSumsString);
+  }
+
+  Future<void> saveSortedAlternatives() async {
+    final prefs = await SharedPreferences.getInstance();
+    final sortedAlternativesString =
+        jsonEncode(_sortedAlternatives.map((a) => a.toJson()).toList());
+    await prefs.setString('sortedAlternatives', sortedAlternativesString);
+  }
+
+// Load methods
+  Future<List<List<double>>> loadNormalizedMatrix() async {
+    final prefs = await SharedPreferences.getInstance();
+    final normalizedMatrixString = prefs.getString('normalizedMatrix');
+    if (normalizedMatrixString != null) {
+      final normalizedMatrix = (jsonDecode(normalizedMatrixString) as List)
+          .map((item) =>
+              (item as List<dynamic>).map((i) => i as double).toList())
+          .toList();
+      return normalizedMatrix;
+    } else {
+      return [];
+    }
+  }
+
+  Future<List<Decimal>> loadCalculatedWeightedSums() async {
+    final prefs = await SharedPreferences.getInstance();
+    final calculatedWeightedSumsString =
+        prefs.getString('calculatedWeightedSums');
+    if (calculatedWeightedSumsString != null) {
+      final calculatedWeightedSums =
+          (jsonDecode(calculatedWeightedSumsString) as List)
+              .map((item) => Decimal.parse(item as String))
+              .toList();
+      return calculatedWeightedSums;
+    } else {
+      return [];
+    }
+  }
+
+  Future<List<Alternative>> loadSortedAlternatives() async {
+    final prefs = await SharedPreferences.getInstance();
+    final sortedAlternativesString = prefs.getString('sortedAlternatives');
+    if (sortedAlternativesString != null) {
+      final sortedAlternatives = (jsonDecode(sortedAlternativesString) as List)
+          .map((item) => Alternative.fromJson(item))
+          .toList();
+      return sortedAlternatives;
+    } else {
+      return [];
+    }
+  }
+
+  // Save method
+  Future<void> saveJudulSubjek() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('judulSubjek', judulSubjek);
+  }
+
+  // Load method
+  Future<String> loadJudulSubjek() async {
+    final prefs = await SharedPreferences.getInstance();
+    final loadedJudulSubjek = prefs.getString('judulSubjek');
+    return loadedJudulSubjek ?? '';
+  }
+
+  Future<void> resetAllData() async {
+    // Clear all data in the provider
+    _judulSubjek = '';
+    _criteriaList = [];
+    _alternatifList = [];
+    _matrixValues = [];
+    _normalizedMatrix = [];
+    _calculatedWeightedSums = [];
+    _sortedAlternatives = [];
+    _hasCalculated = false;
+    notifyListeners();
+
+    // Clear all data in SharedPreferences
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
   }
 }

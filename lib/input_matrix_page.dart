@@ -58,13 +58,13 @@ class _InputMatrixPageState extends State<InputMatrixPage> {
     return Consumer<SawProvider>(
       builder: (context, provider, child) {
         bool areBothListsEmpty =
-            provider.criteriaList.isEmpty && provider.alternatifList.isEmpty;
+            provider.criteriaList.isEmpty || provider.alternatifList.isEmpty;
 
         // debugPrint('areBothListsEmpty: $areBothListsEmpty');
         // debugPrint('criteria name: ${provider.criteriaList[0].criteria}');
         // debugPrint('criteria symbol list: ${provider.criteriaList[0].symbol}');
         // debugPrint(
-        //     'criteria weight list: ${provider.criteriaList[0].weightValue}');
+        //     'criteria weight list: ${provider.criteriaList}');
         // debugPrint('Alternatif list: ${provider.alternatifList}');
         // debugPrint('Matrix list: ${provider.matrixValues}');
         return Scaffold(
@@ -141,6 +141,7 @@ class _InputMatrixPageState extends State<InputMatrixPage> {
                                   itemBuilder: (context, index) {
                                     final criterion =
                                         provider.criteriaList[index];
+                                         var atribut =criterion.isBenefit ? 'Benefit' : 'Cost';
                                     return Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
@@ -148,10 +149,20 @@ class _InputMatrixPageState extends State<InputMatrixPage> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Expanded(
-                                            child: Text(
-                                              '${criterion.symbol} ${criterion.criteria}',
-                                              style: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w600),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  '${criterion.symbol} ${criterion.criteria} (${atribut})',
+                                                  style: GoogleFonts.inter(
+                                                      fontWeight: FontWeight.w600),
+                                                ),
+                                                criterion.criteria == 'Harga' || criterion.criteria == 
+                                                'harga' ? Text(
+                                                  '<= 18.000 = 2\n19.000-20.000 = 3\n21.000-23.000 = 4\n>= 24.000 = 5',
+                                                  style: GoogleFonts.inter(
+                                                      fontWeight: FontWeight.w400, fontSize: 10),
+                                                ) : const SizedBox()
+                                              ],
                                             ),
                                           ),
                                           const Spacer(),
@@ -211,6 +222,7 @@ class _InputMatrixPageState extends State<InputMatrixPage> {
                                     ElevatedButton(
                                       onPressed: () {
                                         _saveMatrixValues(provider);
+                                        provider.saveMatrixValues();
                                       },
                                       child: Text('Simpan',
                                           style: GoogleFonts.inter(

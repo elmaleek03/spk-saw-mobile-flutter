@@ -7,8 +7,7 @@ import 'package:spk_saw/result_page.dart';
 List<MainMenu> mainMenuList = [
   MainMenu(
     title: '1. Input Kriteria',
-    desc:
-        'Langkah pertama ialah menginput kriteria dari lorem ipsum color si jamet',
+    desc: 'Langkah pertama ialah menginput kriteria',
     subDesc: 'Input kriteria terlebih dahulu!',
     offTitle: 'Input data >',
     onTitle: 'Lihat data >',
@@ -16,8 +15,7 @@ List<MainMenu> mainMenuList = [
   ),
   MainMenu(
     title: '2. Input Alternatif',
-    desc:
-        'Langkah selanjutnya ialah menginput alternatif dari lorem ipsum color si jamet',
+    desc: 'Langkah selanjutnya ialah menginput alternatif',
     subDesc: 'Input alternatif terlebih dahulu!',
     offTitle: 'Input data >',
     onTitle: 'Lihat data >',
@@ -26,7 +24,7 @@ List<MainMenu> mainMenuList = [
   MainMenu(
     title: '3. Input Matrix',
     desc:
-        'Langkah selanjutnya ialah menginput matrix dari lorem ipsum color si jamet',
+        'Langkah selanjutnya ialah menginput matrix keputusan untuk setiap alternatif',
     subDesc: 'Input matriks terlebih dahulu!',
     offTitle: 'Input data >',
     onTitle: 'Lihat data >',
@@ -35,7 +33,7 @@ List<MainMenu> mainMenuList = [
   MainMenu(
     title: '4. Normalisasi dan Hasil Akhir',
     desc:
-        'Langkah selanjutnya ialah mengkalkulasikan matrix dari lorem ipsum color si jamet',
+        'Langkah selanjutnya ialah mengkalkulasikan matrix keputusan dan menghitung nilai akhir menggunakan metode SAW',
     subDesc: 'Input seluruh data terlebih dahulu!',
     offTitle: 'Kalkulasi data >',
     onTitle: 'Kalkulasi data >',
